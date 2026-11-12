@@ -1,0 +1,301 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #eef0f6;
+  --border: #e2e5ee;
+  --text: #0d1220;
+  --muted: #5b6478;
+  --accent: #3d6bff;
+  --accent-2: #00b8d9;
+  --accent-soft: rgba(61, 107, 255, 0.1);
+  --grid-line: rgba(13, 18, 32, 0.05);
+  --shadow: 0 1px 2px rgba(13, 18, 32, 0.04), 0 12px 32px -12px rgba(13, 18, 32, 0.14);
+}
+
+[data-theme="dark"] {
+  --bg: #07090f;
+  --surface: #0e121c;
+  --surface-2: #151a27;
+  --border: #1f2636;
+  --text: #eef1f8;
+  --muted: #8a93a8;
+  --accent: #6f8fff;
+  --accent-2: #3fd6f0;
+  --accent-soft: rgba(111, 143, 255, 0.12);
+  --grid-line: rgba(255, 255, 255, 0.035);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 40px -16px rgba(0, 0, 0, 0.6);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space);
+  --font-mono: var(--font-jet);
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ---------- Language-specific typography ---------- */
+/* Arabic: Plex Sans Arabic for every role (Latin fonts have no Arabic glyphs),
+   no negative tracking (it breaks connected letters), a bit more line height. */
+html[lang="ar"] {
+  --font-inter: var(--font-arabic);
+  --font-space: var(--font-arabic);
+  --font-jet: var(--font-arabic);
+}
+html[lang="ar"] body {
+  line-height: 1.75;
+}
+html[lang="ar"] [class*="tracking-"] {
+  letter-spacing: 0 !important;
+}
+/* German: long compound words should hyphenate instead of overflowing */
+html[lang="de"] h1,
+html[lang="de"] h2,
+html[lang="de"] h3 {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.container-x {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+@media (min-width: 768px) {
+  .container-x {
+    padding-inline: 32px;
+  }
+}
+
+/* subtle background grid used in hero sections */
+.bg-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--accent) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Entrance animations (CSS only, content visible by default) ---------- */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* above the fold: play once on load */
+  .rise {
+    animation: rise-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
+  /* below the fold: tied to scroll position where supported */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+/* ---------- Phone frame ---------- */
+.phone {
+  position: relative;
+  border-radius: 34px;
+  padding: 7px;
+  background: linear-gradient(145deg, #2a2f3a, #0b0d12);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 30px 60px -20px rgba(0, 0, 0, 0.45),
+    0 12px 24px -12px rgba(0, 0, 0, 0.35);
+}
+.phone-screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #000;
+  aspect-ratio: 9 / 19.5;
+}
+.phone-screen img {
+  object-fit: cover;
+  object-position: top;
+}
+
+/* ---------- Project card hover ---------- */
+.pcard {
+  --ease-spring: cubic-bezier(0.22, 1.1, 0.36, 1); /* very slight overshoot */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    transform 0.7s var(--ease-out),
+    border-color 0.5s ease,
+    box-shadow 0.7s var(--ease-out);
+}
+.pcard-spot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 30%),
+    color-mix(in srgb, var(--p) 20%, transparent),
+    transparent 65%
+  );
+}
+/* brand-colored backdrop behind the phones */
+.pcard-bg {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  background:
+    radial-gradient(70% 60% at 50% 0%, color-mix(in srgb, var(--p) 55%, #fff) 0%, transparent 70%),
+    linear-gradient(165deg, var(--p) 0%, color-mix(in srgb, var(--p) 45%, #05070c) 100%);
+  transition: transform 0.9s var(--ease-out), filter 0.7s ease;
+}
+/* faint grid texture so the color doesn't feel flat */
+.pcard-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, #000 20%, transparent 80%);
+}
+.pcard-phones {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  /* phone widths use cqw so they scale with the card and never get clipped */
+  container-type: inline-size;
+  /* vertical offsets are % of each phone's own height, so they scale too.
+     --c: how far the center phone sinks, --s: how far the side phones sink */
+  --c: 41%;
+  --s: 59%;
+}
+.pc-l,
+.pc-c,
+.pc-r {
+  transition: transform 0.85s var(--ease-spring), box-shadow 0.6s ease;
+  will-change: transform;
+}
+.pc-c {
+  z-index: 1;
+  transform: translateY(var(--c));
+}
+.pc-l {
+  transform: translate(6px, var(--s)) rotate(-6deg);
+  transition-delay: 40ms;
+}
+.pc-r {
+  transform: translate(-6px, var(--s)) rotate(6deg);
+  transition-delay: 40ms;
+}
+.pcard-arrow,
+.pcard-title {
+  transition: transform 0.5s var(--ease-out);
+}
+.pcard-dot {
+  transition: box-shadow 0.5s ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pcard:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--p) 55%, var(--border));
+    box-shadow:
+      var(--shadow),
+      0 40px 80px -40px color-mix(in srgb, var(--p) 70%, transparent);
+  }
+  .pcard:hover .pcard-spot { opacity: 1; }
+  .pcard:hover .pcard-bg { transform: scale(1.03); filter: brightness(1.08) saturate(1.05); }
+  .pcard:hover .pc-c {
+    transform: translateY(calc(var(--c) - 9%)) scale(1.02);
+    transition-delay: 0ms;
+  }
+  .pcard:hover .pc-l {
+    transform: translate(2px, calc(var(--s) - 6%)) rotate(-8deg);
+    transition-delay: 60ms;
+  }
+  .pcard:hover .pc-r {
+    transform: translate(-2px, calc(var(--s) - 6%)) rotate(8deg);
+    transition-delay: 60ms;
+  }
+  .pcard:hover .pcard-arrow { transform: translateX(6px); }
+  .pcard:hover .pcard-title { transform: translateX(4px); }
+  [dir="rtl"] .pcard:hover .pcard-title { transform: translateX(-4px); }
+  .pcard:hover .pcard-dot { box-shadow: 0 0 0 4px color-mix(in srgb, var(--p) 25%, transparent); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-float { animation: none; }
+}
+
+/* hide scrollbar on horizontal galleries */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
