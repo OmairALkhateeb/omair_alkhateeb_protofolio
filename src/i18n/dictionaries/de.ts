@@ -389,10 +389,12 @@ const de: Dictionary = {
         customer: {
           label: "Shopping-App",
           screens: [
-            "Kategorien", "Produktdetails", "Größe & Menge", "Spezifikationen", "Zum Warenkorb hinzugefügt", "Händler-Shop",
-            "Schnellkauf", "Warenkorb", "Zahlungsart", "Bestellübersicht", "Benachrichtigungen", "Benachrichtigungseinstellungen",
-            "Wunschliste", "Meine Bestellungen", "Bestelldetails", "Bankkonto für Erstattungen", "Lieferort", "Suche",
-            "Benachrichtigungen (Englisch)", "Warenkorb (Englisch)", "Produkt (Englisch)", "Splash", "Login", "Konto erstellen",
+            "Splash", "Login", "Konto erstellen",
+            "Kategorien", "Händler-Shop", "Suche",
+            "Produktdetails", "Größe & Menge", "Spezifikationen", "Schnellkauf", "Zum Warenkorb hinzugefügt", "Wunschliste",
+            "Warenkorb", "Lieferort", "Zahlungsart", "Bestellübersicht",
+            "Meine Bestellungen", "Bestelldetails", "Bankkonto für Erstattungen", "Benachrichtigungen", "Benachrichtigungseinstellungen",
+            "Produkt (Englisch)", "Warenkorb (Englisch)", "Benachrichtigungen (Englisch)",
           ],
         },
       },

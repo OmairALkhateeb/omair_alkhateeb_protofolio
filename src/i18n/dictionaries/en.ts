@@ -387,10 +387,12 @@ const en = {
         customer: {
           label: "Shopping app",
           screens: [
-            "Categories", "Product details", "Size & quantity", "Specifications", "Added to cart", "Merchant store",
-            "Quick add", "Cart", "Payment method", "Order review", "Notifications", "Notification settings",
-            "Wishlist", "My orders", "Order details", "Refund bank account", "Delivery location", "Search",
-            "Notifications (English)", "Cart (English)", "Product (English)", "Splash", "Login", "Create account",
+            "Splash", "Login", "Create account",
+            "Categories", "Merchant store", "Search",
+            "Product details", "Size & quantity", "Specifications", "Quick add", "Added to cart", "Wishlist",
+            "Cart", "Delivery location", "Payment method", "Order review",
+            "My orders", "Order details", "Refund bank account", "Notifications", "Notification settings",
+            "Product (English)", "Cart (English)", "Notifications (English)",
           ],
         },
       },

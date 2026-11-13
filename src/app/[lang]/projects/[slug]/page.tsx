@@ -8,6 +8,11 @@ import { getNextProject, getProject, isLive, projects, screenCount } from "@/dat
 import { defaultLocale, hasLocale, locales } from "@/i18n/config";
 import { fmt, getDictionary } from "@/i18n/dictionaries";
 
+// Every page reads `params`. All lang/slug pairs are prerendered below, so a
+// navigation may briefly block on the static payload instead of showing a
+// loading shell. Opt out of instant-navigation validation for this segment.
+export const instant = false;
+
 export function generateStaticParams() {
   return locales.flatMap((lang) => projects.map((p) => ({ lang, slug: p.slug })));
 }

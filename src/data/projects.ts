@@ -160,13 +160,14 @@ export const projects: ProjectData[] = [
     apps: [
       {
         id: "customer",
-        // Omair's own order (file names in assets/projects/raf).
+        // User journey: sign in → browse → product → cart → checkout → orders → account → English UI.
         screens: [
-          "04-categories-sheet", "06-product-detail", "07-product-options", "08-product-specs", "09-added-to-cart-toast",
-          "10-merchant-store", "11-quick-add-sheet", "12-cart", "14-checkout-payment", "15-checkout-review",
-          "16-notifications", "17-notification-settings", "18-wishlist", "20-orders", "21-order-detail",
-          "24-bank-account", "26-address-map", "28-search", "30-notifications-en", "31-cart-en", "32-product-en",
           "33-splash", "34-login", "35-register",
+          "04-categories-sheet", "10-merchant-store", "28-search",
+          "06-product-detail", "07-product-options", "08-product-specs", "11-quick-add-sheet", "09-added-to-cart-toast", "18-wishlist",
+          "12-cart", "26-address-map", "14-checkout-payment", "15-checkout-review",
+          "20-orders", "21-order-detail", "24-bank-account", "16-notifications", "17-notification-settings",
+          "32-product-en", "31-cart-en", "30-notifications-en",
         ].map((n) => rf(n)),
       },
     ],
