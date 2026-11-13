@@ -34,7 +34,7 @@ const de: Dictionary = {
 
   stats: [
     { value: "4+", label: "Jahre Softwareentwicklung" },
-    { value: "5", label: "Produkte · 7 Apps im Portfolio" },
+    { value: "6", label: "Produkte · 8 Apps im Portfolio" },
     { value: "2", label: "Entwicklerteams geleitet (7 & 6 Personen)" },
     { value: "iOS + Android", label: "Store-Veröffentlichungen" },
   ],
@@ -59,6 +59,20 @@ const de: Dictionary = {
     logistics: "Logistik",
     healthcare: "Gesundheit",
     social: "Social",
+    ecommerce: "E-Commerce",
+  },
+
+  markets: {
+    sa: "Saudi-Arabien",
+    iq: "Irak",
+    om: "Oman",
+  },
+
+  statuses: {
+    "live-ios-pending": "Bei Google Play verfügbar · App-Store-Freigabe ausstehend",
+    "awaiting-license": "Wartet auf die Lizenzierung durch den Kunden, danach Store-Release",
+    "final-stage": "In der finalen Entwicklungsphase",
+    publishing: "Wird in den Stores veröffentlicht",
   },
 
   expertise: {
@@ -172,6 +186,8 @@ const de: Dictionary = {
     apps: "Apps",
     category: "Kategorie",
     technology: "Technologie",
+    market: "Markt",
+    status: "Status",
     explore: "{n} Screens ansehen",
     mainScreenAlt: "Hauptscreen von {name}",
     overviewEyebrow: "überblick",
@@ -327,6 +343,7 @@ const de: Dictionary = {
       overview: [
         "Rassah bringt Menschen zusammen, die spielen wollen. Nutzer entdecken Runden in ihrer Umgebung als Liste oder auf der Karte, sehen Gastgeber und Teilnehmer und sichern sich mit wenigen Taps einen Platz.",
         "Jeder kann Gastgeber sein. Für eine neue Runde braucht es ein Titelbild, die Aktivität, einen Titel, Datum, Uhrzeit, die Zahl der benötigten Spieler und einen Preis. Profile schaffen Vertrauen durch Bewertungen, veranstaltete Runden und Abschlussquote.",
+        "Rassah entstand für denselben Kunden wie Madar EX.",
       ],
       role: "Flutter-Entwickler",
       platforms: "Android & iOS",
@@ -345,6 +362,37 @@ const de: Dictionary = {
           screens: [
             "Splash", "Onboarding", "Login", "Entdecken", "Rundenkarte", "Rundendetails",
             "Beigetreten", "Erstellen: Aktivität", "Erstellen: Details", "Profil",
+          ],
+        },
+      },
+    },
+    raf: {
+      tagline: "Multi-Vendor-Marktplatz für Parfüm und Beauty",
+      intro:
+        "Eine zweisprachige Multi-Vendor-Shopping-App für den Oman. Kunden stöbern in Shops und Produkten, wählen Größen, bezahlen in Omanischen Rial und verfolgen jede Bestellung.",
+      overview: [
+        "RAF bündelt viele Händler in einer Arabisch-first-Storefront. Nutzer stöbern in Kategorien wie Parfüm, Gesichtspflege und Beauty-Geräte, besuchen die Shops einzelner Händler, suchen und sortieren Produkte und speichern Favoriten auf einer Wunschliste.",
+        "Der Checkout läuft in klaren Schritten vom Warenkorb über die Zahlungsart bis zur Bestellübersicht, inklusive Mehrwertsteuer, Versandkosten und Rabattcodes. Kunden verfolgen den Status jeder Bestellung, setzen die Lieferadresse auf der Karte, hinterlegen ein Bankkonto für Erstattungen und wählen, welche Benachrichtigungen sie erhalten. Die gesamte App funktioniert auf Arabisch und Englisch.",
+      ],
+      role: "Flutter-Entwickler",
+      platforms: "Android & iOS",
+      highlights: ["Multi-Vendor-Marktplatz", "Zweisprachig AR / EN", "Für den Oman gebaut (OMR)"],
+      features: [
+        { title: "Händler-Shops", body: "Jeder Händler hat eine Shopseite mit Bewertung, Standort, Produktanzahl, Kategorien und eigener Suche." },
+        { title: "Produktoptionen", body: "Größen, Menge, Verfügbarkeit, Spezifikationen und Bewertungen, plus Schnellkauf direkt aus der Liste." },
+        { title: "Checkout in Schritten", body: "Zahlungsart und Bestellübersicht mit Mehrwertsteuer, Versand und Rabattcodes vor dem Bezahlen." },
+        { title: "Bestellverfolgung", body: "Bestellhistorie mit Statusanzeige und eine Detailseite mit Lieferadresse, Artikeln und Summen." },
+        { title: "Lieferung per Karte", body: "Kunden setzen ihre Lieferadresse auf der Karte und können nach Gebieten und Straßen suchen." },
+        { title: "Benachrichtigungen & Erstattungen", body: "Benachrichtigungen nach Typ, Einstellungen pro Kategorie und ein Bankkonto für Erstattungen." },
+      ],
+      apps: {
+        customer: {
+          label: "Shopping-App",
+          screens: [
+            "Kategorien", "Produktdetails", "Größe & Menge", "Spezifikationen", "Zum Warenkorb hinzugefügt", "Händler-Shop",
+            "Schnellkauf", "Warenkorb", "Zahlungsart", "Bestellübersicht", "Benachrichtigungen", "Benachrichtigungseinstellungen",
+            "Wunschliste", "Meine Bestellungen", "Bestelldetails", "Bankkonto für Erstattungen", "Lieferort", "Suche",
+            "Benachrichtigungen (Englisch)", "Warenkorb (Englisch)", "Produkt (Englisch)", "Splash", "Login", "Konto erstellen",
           ],
         },
       },

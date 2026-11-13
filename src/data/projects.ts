@@ -4,7 +4,9 @@
 
 import type { Dictionary } from "@/i18n/dictionaries";
 
-export type CategoryKey = "mobility" | "logistics" | "healthcare" | "social";
+export type CategoryKey = "mobility" | "logistics" | "healthcare" | "social" | "ecommerce";
+export type MarketKey = keyof Dictionary["markets"];
+export type StatusKey = keyof Dictionary["statuses"];
 export type StoreLink = { label: string; href: string };
 
 type AppData = { id: string; screens: string[] };
@@ -19,15 +21,21 @@ export type ProjectData = {
   heroScreens: [string, string, string];
   apps: AppData[];
   links: StoreLink[];
+  market?: MarketKey; // country the app is built for
+  status?: StatusKey; // release status, shown as a badge
 };
 
-export type ProjectSlug = "yalla" | "cargox-driver" | "aazer" | "madar-ex" | "rassah";
+export type ProjectSlug = "yalla" | "cargox-driver" | "aazer" | "madar-ex" | "rassah" | "raf";
+
+/** Released statuses get a green badge; everything else is amber. */
+export const isLive = (s: StatusKey) => s === "live-ios-pending";
 
 const y = (f: string) => `/projects/yalla/${f}`;
 const c = (f: string) => `/projects/cargox-driver/${f}`;
 const a = (f: string) => `/projects/aazer/${f}`;
 const m = (f: string) => `/projects/madar-ex/${f}`;
 const r = (f: string) => `/projects/rassah/${f}`;
+const rf = (n: string) => `/projects/raf/${n}.png`;
 
 export const projects: ProjectData[] = [
   {
@@ -54,7 +62,9 @@ export const projects: ProjectData[] = [
         ].map((f) => y(`driver/${f}.png`)),
       },
     ],
-    links: [], // VERIFY: add store links if published
+    links: [],
+    market: "iq",
+    status: "final-stage",
   },
   {
     slug: "cargox-driver",
@@ -73,7 +83,9 @@ export const projects: ProjectData[] = [
         ].map((f) => c(`${f}.jpg`)),
       },
     ],
-    links: [], // VERIFY: add Google Play link
+    links: [{ label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.cargox.driver" }],
+    market: "sa",
+    status: "live-ios-pending",
   },
   {
     slug: "aazer",
@@ -115,6 +127,8 @@ export const projects: ProjectData[] = [
       },
     ],
     links: [],
+    market: "sa",
+    status: "awaiting-license",
   },
   {
     slug: "rassah",
@@ -135,9 +149,34 @@ export const projects: ProjectData[] = [
     ],
     links: [],
   },
+  {
+    slug: "raf",
+    name: "RAF",
+    category: "ecommerce",
+    accent: "#C9A045",
+    stack: ["Flutter", "Dart", "REST APIs", "OpenStreetMap"], // VERIFY
+    cover: rf("06-product-detail"),
+    heroScreens: [rf("10-merchant-store"), rf("06-product-detail"), rf("12-cart")],
+    apps: [
+      {
+        id: "customer",
+        // Omair's own order (file names in assets/projects/raf).
+        screens: [
+          "04-categories-sheet", "06-product-detail", "07-product-options", "08-product-specs", "09-added-to-cart-toast",
+          "10-merchant-store", "11-quick-add-sheet", "12-cart", "14-checkout-payment", "15-checkout-review",
+          "16-notifications", "17-notification-settings", "18-wishlist", "20-orders", "21-order-detail",
+          "24-bank-account", "26-address-map", "28-search", "30-notifications-en", "31-cart-en", "32-product-en",
+          "33-splash", "34-login", "35-register",
+        ].map((n) => rf(n)),
+      },
+    ],
+    links: [],
+    market: "om",
+    status: "publishing",
+  },
 ];
 
-export const categoryKeys: CategoryKey[] = ["mobility", "logistics", "healthcare", "social"];
+export const categoryKeys: CategoryKey[] = ["mobility", "logistics", "healthcare", "social", "ecommerce"];
 
 /* ---------- Localized view model ---------- */
 
@@ -146,6 +185,8 @@ export type AppGroup = { id: string; label: string; screens: Screen[] };
 
 export type Project = Omit<ProjectData, "apps"> & {
   categoryLabel: string;
+  marketLabel?: string;
+  statusLabel?: string;
   tagline: string;
   intro: string;
   overview: string[];
@@ -164,6 +205,8 @@ export function localize(p: ProjectData, t: Dictionary): Project {
     ...p,
     ...text,
     categoryLabel: t.categories[p.category],
+    marketLabel: p.market && t.markets[p.market],
+    statusLabel: p.status && t.statuses[p.status],
     apps: p.apps.map((app) => ({
       id: app.id,
       label: appText[app.id].label,

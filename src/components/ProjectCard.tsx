@@ -1,5 +1,6 @@
 import HoverCard from "./HoverCard";
 import PhoneFrame from "./PhoneFrame";
+import StatusBadge from "./StatusBadge";
 import { type Project, screenCount } from "@/data/projects";
 import { fmt, type Dictionary } from "@/i18n/dictionaries";
 
@@ -31,6 +32,7 @@ export default function ProjectCard({ project, href, t }: Props) {
         </div>
         <h3 className="pcard-title font-display text-2xl font-semibold tracking-tight">{project.name}</h3>
         <p className="text-muted">{project.tagline}</p>
+        <StatusBadge project={project} />
         <span className="pcard-cta mt-auto inline-flex items-center gap-2 pt-2 text-sm font-medium">
           {t.viewCase}
           <svg className="pcard-arrow rtl:-scale-x-100" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import PhoneFrame from "@/components/PhoneFrame";
 import Reveal from "@/components/Reveal";
 import ScreenGallery from "@/components/ScreenGallery";
-import { getNextProject, getProject, projects, screenCount } from "@/data/projects";
+import { getNextProject, getProject, isLive, projects, screenCount } from "@/data/projects";
 import { defaultLocale, hasLocale, locales } from "@/i18n/config";
 import { fmt, getDictionary } from "@/i18n/dictionaries";
 
@@ -41,6 +41,7 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
     { k: tp.platform, v: p.platforms },
     { k: tp.apps, v: p.apps.map((a) => a.label).join(" + ") },
     { k: tp.category, v: p.categoryLabel },
+    ...(p.marketLabel ? [{ k: tp.market, v: p.marketLabel }] : []),
   ];
 
   return (
@@ -97,6 +98,15 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
                     <dd className="mt-1.5 text-[15px] font-medium">{m.v}</dd>
                   </div>
                 ))}
+                {p.statusLabel && (
+                  <div className={`bg-surface p-5 ${meta.length % 2 ? "" : "col-span-2"}`}>
+                    <dt className="font-mono text-[12px] text-muted">{tp.status}</dt>
+                    <dd className="mt-1.5 flex items-start gap-2 text-[15px] font-medium">
+                      <span className={`mt-[7px] h-2 w-2 shrink-0 rounded-full ${p.status && isLive(p.status) ? "bg-emerald-400" : "bg-amber-400"}`} aria-hidden />
+                      {p.statusLabel}
+                    </dd>
+                  </div>
+                )}
                 <div className="col-span-2 bg-surface p-5">
                   <dt className="font-mono text-[12px] text-muted">{tp.technology}</dt>
                   <dd className="mt-2.5 flex flex-wrap gap-2">

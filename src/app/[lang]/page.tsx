@@ -5,6 +5,7 @@ import SectionHeading from "@/components/SectionHeading";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import CopyEmail from "@/components/CopyEmail";
 import SocialLinks from "@/components/SocialLinks";
+import StatusBadge from "@/components/StatusBadge";
 import { categoryKeys, localizedProjects } from "@/data/projects";
 import { experienceMeta, profile } from "@/data/profile";
 import { defaultLocale, hasLocale } from "@/i18n/config";
@@ -110,6 +111,7 @@ export default async function Home(props: PageProps<"/[lang]">) {
                 </span>
                 <h3 className="pcard-title font-display text-4xl font-semibold tracking-tight sm:text-5xl">{featured.name}</h3>
                 <p className="text-lg text-muted">{featured.intro}</p>
+                <StatusBadge project={featured} />
                 <ul className="flex flex-wrap gap-2">
                   {featured.highlights.map((h) => (
                     <li key={h} className="rounded-full border border-line px-3 py-1 text-[13px] text-muted">{h}</li>

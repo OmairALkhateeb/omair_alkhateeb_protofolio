@@ -32,7 +32,7 @@ const en = {
 
   stats: [
     { value: "4+", label: "Years building software" },
-    { value: "5", label: "Products · 7 apps showcased" },
+    { value: "6", label: "Products · 8 apps showcased" },
     { value: "2", label: "Dev teams led (7 & 6 members)" },
     { value: "iOS + Android", label: "Store releases" },
   ],
@@ -57,6 +57,20 @@ const en = {
     logistics: "Logistics",
     healthcare: "Healthcare",
     social: "Social",
+    ecommerce: "E-commerce",
+  },
+
+  markets: {
+    sa: "Saudi Arabia",
+    iq: "Iraq",
+    om: "Oman",
+  },
+
+  statuses: {
+    "live-ios-pending": "Live on Google Play · App Store approval pending",
+    "awaiting-license": "Awaiting the client's licensing, then store release",
+    "final-stage": "In the final stages of development",
+    publishing: "Being published to the stores",
   },
 
   expertise: {
@@ -170,6 +184,8 @@ const en = {
     apps: "Apps",
     category: "Category",
     technology: "Technology",
+    market: "Market",
+    status: "Status",
     explore: "Explore {n} screens",
     mainScreenAlt: "{name} main screen",
     overviewEyebrow: "overview",
@@ -325,6 +341,7 @@ const en = {
       overview: [
         "Rassah connects people who want to play. Users discover sessions around them by list or on a map, see who is hosting and who has joined, and reserve a spot in a few taps.",
         "Anyone can host. Creating a session takes a cover photo, activity type, title, date, time, the number of players needed and a price. Profiles build trust with ratings, hosted sessions and completion rate.",
+        "Rassah was built for the same client as Madar EX.",
       ],
       role: "Flutter Developer",
       platforms: "Android & iOS",
@@ -343,6 +360,37 @@ const en = {
           screens: [
             "Splash", "Onboarding", "Login", "Discover", "Sessions map", "Session details",
             "Joined", "Create: activity", "Create: details", "Profile",
+          ],
+        },
+      },
+    },
+    raf: {
+      tagline: "Multi-vendor marketplace for perfumes and beauty",
+      intro:
+        "A bilingual multi-vendor shopping app for Oman. Customers browse stores and products, choose sizes, check out in Omani rials and follow every order.",
+      overview: [
+        "RAF brings many merchants into one Arabic-first storefront. Shoppers browse categories such as perfumes, face care and beauty devices, visit each merchant's store, search and sort products, and save favourites to a wishlist.",
+        "Checkout runs in clear steps from cart to payment method to order review, with VAT, delivery fees and discount codes. Customers follow each order's status, pin their delivery location on a map, add a bank account for refunds and choose which notifications they get. The whole app works in Arabic and English.",
+      ],
+      role: "Flutter Developer",
+      platforms: "Android & iOS",
+      highlights: ["Multi-vendor marketplace", "Bilingual AR / EN", "Built for Oman (OMR)"],
+      features: [
+        { title: "Merchant stores", body: "Each merchant has a store page with rating, location, product count, categories and its own search." },
+        { title: "Product options", body: "Sizes, quantity, stock, specifications and reviews, plus a quick-add sheet straight from the list." },
+        { title: "Step-by-step checkout", body: "Payment method and order review with VAT, shipping and discount codes before paying." },
+        { title: "Order tracking", body: "Order history with status badges and a details page with shipping address, items and totals." },
+        { title: "Delivery on the map", body: "Customers pin their delivery address on a map and can search for areas and streets." },
+        { title: "Notifications & refunds", body: "Notifications filtered by type, settings per category, and a bank account for refunds." },
+      ],
+      apps: {
+        customer: {
+          label: "Shopping app",
+          screens: [
+            "Categories", "Product details", "Size & quantity", "Specifications", "Added to cart", "Merchant store",
+            "Quick add", "Cart", "Payment method", "Order review", "Notifications", "Notification settings",
+            "Wishlist", "My orders", "Order details", "Refund bank account", "Delivery location", "Search",
+            "Notifications (English)", "Cart (English)", "Product (English)", "Splash", "Login", "Create account",
           ],
         },
       },
